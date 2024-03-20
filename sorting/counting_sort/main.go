@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"time"
 )
 
@@ -10,47 +9,43 @@ import (
 // Space Complexity O(k)
 
 func countingSort(arr []int) []int {
-	length := len(arr)
-	items := make([]int, length)
-	copy(items, arr)
+	if len(arr) == 0 {
+		return arr
+	}
 
-	var min = math.MaxInt32
-	var max = math.MinInt32
+	maxN, minN := arr[0], arr[0]
 	for _, x := range arr {
-		if x > max {
-			max = x
+		if x > maxN {
+			maxN = x
 		}
-		if x < min {
-			min = x
+		if x < minN {
+			minN = x
 		}
 	}
 
-	var counts = make([]int, max-min+1)
-
+	counts := make([]int, maxN-minN+1)
 	for _, x := range arr {
-		counts[x-min]++
+		counts[x-minN]++
 	}
 
-	var total = 0
-	for i := min; i <= max; i++ {
-		var oldCount = counts[i-min]
-		counts[i-min] = total
-		total += oldCount
+	for i := 1; i < len(counts); i++ {
+		counts[i] += counts[i-1]
 	}
 
-	for _, x := range arr {
-		items[counts[x-min]] = x
-		counts[x-min]++
+	sortedArr := make([]int, len(arr))
+	//items := []int{4, 2, 2, 1, 1, 1, 10, 10, 1, 3, 44}
+	for i := len(arr) - 1; i >= 0; i-- {
+		counts[arr[i]-minN]--
+		sortedArr[counts[arr[i]-minN]] = arr[i]
 	}
-	return items
+
+	return sortedArr
 }
 
 func main() {
-	items := []int{4, 1, 5, 3, 2}
+	items := []int{4, 2, 2, 1, 1, 1, 10, 10, 1, 3, 44}
 
 	sortItems := countingSort(items)
-	// sortItems is {1, 2, 3, 4, 5}
-
 	// *** simplified speed test ***
 
 	items = make([]int, 200)

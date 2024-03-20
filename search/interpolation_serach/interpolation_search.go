@@ -5,28 +5,28 @@ import (
 	"time"
 )
 
-//works when the array is sorted
-func interpolationSearch(arr []int, x int) int {
-	low := 0
-	high := len(arr) - 1
+// works when the array is sorted
+func interpolationSearch(arr []int, value int) int {
+	lowInd := 0
+	highInd := len(arr) - 1
 
-	for (arr[low] < x) && (x < arr[high]) {
-		var mid = low + ((x-arr[low])*(high-low))/(arr[high]-arr[low])
+	for (arr[lowInd] < value) && (value < arr[highInd]) {
+		var midIndex = lowInd + ((value-arr[lowInd])*(highInd-lowInd))/(arr[highInd]-arr[lowInd])
 
-		if arr[mid] < x {
-			low = mid + 1
-		} else if arr[mid] > x {
-			high = mid - 1
+		if arr[midIndex] < value {
+			lowInd = midIndex + 1
+		} else if arr[midIndex] > value {
+			highInd = midIndex - 1
 		} else {
-			return mid
+			return midIndex
 		}
 	}
 
-	if arr[low] == x {
-		return low
+	if arr[lowInd] == value {
+		return lowInd
 	}
-	if arr[high] == x {
-		return high
+	if arr[highInd] == value {
+		return highInd
 	}
 	return -1
 }
@@ -61,4 +61,3 @@ func main() {
 	fmt.Println(nanoseconds)
 	// about 41 nanoseconds
 }
-

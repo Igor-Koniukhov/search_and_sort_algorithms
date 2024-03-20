@@ -1,16 +1,16 @@
 package main
 
 import (
-"fmt"
-"time"
+	"fmt"
 )
 
-//works when the array is sorted
+// works when the array is sorted
 func binarySearch(arr []int, x int) int {
 	i := 0
 	j := len(arr)
 	for i != j {
 		var m = (i + j) / 2
+		fmt.Println(m)
 		if x == arr[m] {
 			return m
 		}
@@ -25,17 +25,9 @@ func binarySearch(arr []int, x int) int {
 
 func main() {
 	items := []int{2, 3, 5, 7, 11, 13, 17}
+	fmt.Println(binarySearch(items, 17))
 
-	fmt.Println(binarySearch(items, 1))
-	//print -1
-	fmt.Println(binarySearch(items, 7))
-	//print 3
-	fmt.Println(binarySearch(items, 19))
-	//print -1
-
-	// *** simplified speed test ***
-
-	items = make([]int, 10000000)
+	/*items = make([]int, 10000000)
 	for i := 0; i < len(items); i++ {
 		items[i] = i
 	}
@@ -51,5 +43,5 @@ func main() {
 	nanoseconds := delta.Nanoseconds() / int64(count)
 
 	fmt.Println(nanoseconds)
-	// about 88 nanoseconds
+	// about 88 nanoseconds*/
 }
