@@ -1,0 +1,4 @@
+# Explanation
+The Fan-In pattern is a messaging design pattern used in concurrent programming to combine multiple input channels into a single output channel. It's particularly useful when you have several concurrent processes producing results and you want to consume all these results in a single process or channel. This pattern simplifies the management of multiple input sources by consolidating their output, making it easier to process or monitor.
+
+In Go, channels and goroutines are commonly used to implement the Fan-In pattern. The key idea is to start a new goroutine that reads from multiple input channels and sends the data read from any of them to a single output channel. This goroutine acts as a multiplexer.
