@@ -2,16 +2,16 @@ package main
 
 import "fmt"
 
-type Logger interface {
-	Log(message string, severity int)
-	SetNext(logger Logger)
-}
-
 const (
 	Info = iota
 	Warning
 	Error
 )
+
+type Logger interface {
+	Log(message string, severity int)
+	SetNext(logger Logger)
+}
 
 type BaseLogger struct {
 	severity int
