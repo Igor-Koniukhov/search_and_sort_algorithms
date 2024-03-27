@@ -40,4 +40,5 @@ func main() {
 		result := <-results
 		fmt.Printf("Result: %d\n", result)
 	}
+	close(results)
 }

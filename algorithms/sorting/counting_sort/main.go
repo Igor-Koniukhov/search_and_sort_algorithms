@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 // Time Complexity O(n+k)
@@ -24,6 +23,7 @@ func countingSort(arr []int) []int {
 	}
 
 	counts := make([]int, maxN-minN+1)
+
 	for _, x := range arr {
 		counts[x-minN]++
 	}
@@ -33,22 +33,23 @@ func countingSort(arr []int) []int {
 	}
 
 	sortedArr := make([]int, len(arr))
-	//items := []int{4, 2, 2, 1, 1, 1, 10, 10, 1, 3, 44}
-	for i := len(arr) - 1; i >= 0; i-- {
-		counts[arr[i]-minN]--
-		sortedArr[counts[arr[i]-minN]] = arr[i]
+
+	for _, x := range arr {
+		counts[x-minN]--
+		sortedArr[counts[x-minN]] = x
 	}
 
 	return sortedArr
 }
 
 func main() {
-	items := []int{4, 2, 2, 1, 1, 1, 10, 10, 1, 3, 44}
+	items := []int{4, 2, 2, 1, 1, 1, 10, 10, 1, 3}
 
 	sortItems := countingSort(items)
 	// *** simplified speed test ***
+	fmt.Println(sortItems)
 
-	items = make([]int, 200)
+	/*items = make([]int, 200)
 	for i := 0; i < len(items); i++ {
 		items[i] = i
 	}
@@ -67,5 +68,5 @@ func main() {
 
 	fmt.Println(sortItems)
 	fmt.Println(nanoseconds)
-	// about 58 000 000 nanoseconds
+	// about 58 000 000 nanoseconds*/
 }

@@ -33,7 +33,6 @@ func interpolationSearch(arr []int, value int) int {
 
 func main() {
 	items := []int{2, 3, 5, 7, 11, 13, 17}
-
 	fmt.Println(interpolationSearch(items, 1))
 	//print -1
 	fmt.Println(interpolationSearch(items, 7))

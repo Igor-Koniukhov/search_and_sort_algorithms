@@ -11,6 +11,7 @@ func moveZerosToEnd(arr []int) []int {
 			position++
 		}
 	}
+
 	for i := position; i < len(arr); i++ {
 		arr[i] = 0
 	}

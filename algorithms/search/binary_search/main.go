@@ -10,7 +10,6 @@ func binarySearch(arr []int, x int) int {
 	j := len(arr)
 	for i != j {
 		var m = (i + j) / 2
-		fmt.Println(m)
 		if x == arr[m] {
 			return m
 		}

@@ -6,8 +6,6 @@ import (
 
 func riversSort(arr []int) []int {
 	var n = len(arr) - 1
-	fmt.Println(n)
-
 	for i := 0; i < n/2; i++ {
 		arr[i], arr[n-i] = arr[n-i], arr[i]
 	}
